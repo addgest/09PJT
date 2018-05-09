@@ -32,10 +32,10 @@ function fncGetUserList(currentPage){
 				<tr>
 					<td width="93%" class="ct_ttl01">					
 						<c:if test="${menu=='manage' }">
-							惑前 包府    ${search.searchCondition}
+							惑前 包府
 						</c:if>		
 						<c:if test="${menu!='manage' }">									
-							惑前格废炼雀   ${search.searchCondition}
+							惑前格废炼雀 
 						</c:if>		
 					</td>
 				</tr>

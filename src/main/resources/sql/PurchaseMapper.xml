@@ -9,7 +9,7 @@
  	
 	<resultMap id="purchaseSelectMap" type="purchase">
 		<result property="tranNo" 		column="tran_no" 			jdbcType="INTEGER"/>		
-		<result property="purchaseProd.prodNo"		column="prod_no" 			jdbcType="INTEGER" />
+		<result property="purchaseProd.prodNo"		column="prod_no" 			jdbcType="INTEGER" />		
 		<result property="buyer.userId" 	column="buyer_id" 		jdbcType="VARCHAR" />
 		<result property="paymentOption" 	column="payment_option" 	jdbcType="CHAR" />
 		<result property="receiverName" 		column="receiver_name" 				jdbcType="VARCHAR" />
@@ -19,6 +19,7 @@
 		<result property="tranCode" 	column="tran_status_code" 		jdbcType="CHAR" />
 		<result property="orderDate" 	column="order_data" 		jdbcType="DATE" />		
 		<result property="divyDate" 		column="dlvy_date" 			jdbcType="DATE" />
+		<result property="purchaseProdName"		column="prod_name" 			jdbcType="VARCHAR" />
 	</resultMap>
 	 
 	 
@@ -95,24 +96,25 @@
 	 
 	<!-- SQL : SELECT LIST -->
 	<select  id="getPurchaseList"  parameterType="map" resultMap="purchaseSelectMap">
-	  	
+
 	  	SELECT *
 	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
 	  					FROM		(		select 
-												tran_no, 
-												prod_no, 
-												buyer_id, 
-												payment_option,
-												receiver_name, 
-												receiver_phone, 
-												demailaddr,	
-												dlvy_request,
-												tran_status_code,
-												order_data,
-												dlvy_date	
-											FROM transaction
-												WHERE buyer_id=#{user.userId}										
-											ORDER BY tran_no DESC) inner_table
+												t.tran_no as tran_no, 
+												t.prod_no as prod_no, 
+												t.buyer_id as buyer_id, 
+												t.payment_option as payment_option,
+												t.receiver_name as receiver_name, 
+												t.receiver_phone as receiver_phone, 
+												t.demailaddr as demailaddr,	
+												t.dlvy_request as dlvy_request,
+												t.tran_status_code as tran_status_code,
+												t.order_data as order_data,
+												t.dlvy_date as dlvy_date,
+												(SELECT p.prod_name FROM product p WHERE p.prod_no = t.prod_no ) as prod_name	 
+											FROM transaction t
+												WHERE t.buyer_id=#{user.userId}										
+											ORDER BY t.tran_no DESC) inner_table
 						WHERE ROWNUM &lt;= #{search.endRowNum} )
 		WHERE row_seq BETWEEN #{search.startRowNum} AND #{search.endRowNum}  	
 	

@@ -168,7 +168,7 @@ public class PurchaseController {
 		return "forward:/purchase/listPurchase";
 	}	
 	
-	@RequestMapping(value="listPurchase", method=RequestMethod.GET)
+	@RequestMapping(value="listPurchase")
 	public String listPurchase( @ModelAttribute("user") User user,
 								@ModelAttribute("search") Search search,
 								Model model,

@@ -37,32 +37,36 @@
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0"	style="margin-top: 10px;">
 	<tr>
-		<td colspan="11">전체  ${resultPage.totalCount} 건수,	현재 ${resultPage.currentPage} 페이지</td>
+		<td colspan="13">전체  ${resultPage.totalCount} 건수,	현재 ${resultPage.currentPage} 페이지</td>
 	</tr>
 	<tr>
 		<td class="ct_list_b" width="100">No</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b" width="150">회원ID</td>
+		<td class="ct_list_b" width="100">거래번호</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b" width="150">회원명</td>
+		<td class="ct_list_b" width="150">상품명</td>
+		<td class="ct_line02"></td>		
+		<td class="ct_list_b" width="150">수신자명</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b">전화번호</td>
+		<td class="ct_list_b">수신자 전화번호</td>
 		<td class="ct_line02"></td>
 		<td class="ct_list_b">배송현황</td>
 		<td class="ct_line02"></td>
 		<td class="ct_list_b">정보수정</td>
 	</tr>
 	<tr>
-		<td colspan="11" bgcolor="808285" height="1"></td>
+		<td colspan="13" bgcolor="808285" height="1"></td>
 	</tr>
 	<c:set var="i" value="0" />	
 	<c:forEach var="purchase" items="${list}">
 		<c:set var="i" value="${i+1}"/>
 	<tr class="ct_list_pop">
-		<td align="center">
-			<a href="/purchase/getPurchase?tranNo=${purchase.tranNo}">${i}</a>
-		</td>
+		<td align="center">${i}</td>
 		<td></td>
+		<td><a href="/purchase/getPurchase?tranNo=${purchase.tranNo}">${purchase.tranNo}</a></td>
+		<td></td>
+		<td align="center">${purchase.purchaseProdName}</td>
+		<td></td>		
 		<td align="left">
 			<a href="/user/getUser?userId=${purchase.buyer.userId}">${purchase.buyer.userId}</a>
 		</td>
@@ -88,7 +92,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td colspan="11" bgcolor="D6D7D6" height="1"></td>
+		<td colspan="13" bgcolor="D6D7D6" height="1"></td>
 	</tr>
 	</c:forEach>
 </table>

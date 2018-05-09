@@ -20,6 +20,28 @@
 function fncAddPurchase() {
 	document.addPurchase.submit();
 }
+
+//도로명 주소 팝업
+function goPopup(){
+	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+    var pop = window.open("/popup/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+    
+	// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
+}
+/** API 서비스 제공항목 확대 (2017.02) **/
+function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn
+						, detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn, buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno, emdNo){
+/* 	// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+	document.form.roadAddrPart1.value = roadAddrPart1;
+	document.form.roadAddrPart2.value = roadAddrPart2;
+	document.form.addrDetail.value = addrDetail;
+	document.form.zipNo.value = zipNo; */
+	
+	document.addPurchase.receiverAddr.value = zipNo+" "+roadAddrPart1+" "+roadAddrPart2+" "+addrDetail;
+}
+
+// end 도로명 주소 팝업
 -->
 </script>
 </head>
@@ -54,7 +76,7 @@ function fncAddPurchase() {
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
 	<tr>
-		<td width="300" class="ct_write">
+		<td width="130" class="ct_write">
 			상품번호 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
@@ -154,7 +176,7 @@ function fncAddPurchase() {
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<input 	type="text" name="receiverPhone" class="ct_input_g" 
-							style="width: 100px; height: 19px" maxLength="20" value="null" />
+							style="width: 100px; height: 19px" maxLength="20" value="" />
 		</td>
 	</tr>
 	<tr>
@@ -164,8 +186,8 @@ function fncAddPurchase() {
 		<td width="104" class="ct_write">구매자주소</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input 	type="text" name="receiverAddr" class="ct_input_g" 
-							style="width: 100px; height: 19px" maxLength="20" 	value="null" />
+			<input 	type="text" name="receiverAddr" class="ct_input_bg" 
+							style="width: 400px; height: 19px; cursor:hand;" maxLength="50" 	value="" readonly /> <a href="javascript:goPopup();" style="color:blue;">주소검색</a>
 		</td>
 	</tr>
 	<tr>
@@ -176,7 +198,7 @@ function fncAddPurchase() {
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<input		type="text" name="receiverRequest" 	class="ct_input_g" 
-							style="width: 100px; height: 19px" maxLength="20" />
+							style="width: 200px; height: 19px" maxLength="20" />
 		</td>
 	</tr>
 	<tr>

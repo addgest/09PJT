@@ -99,14 +99,6 @@ function fncCheckDuplication() {
 		= window.open("/user/checkDuplication.jsp?userId="+userId,"popWin", "left=300,top=200,width=300,height=200,marginwidth=0,marginheight=0,scrollbars=no,scrolling=no,menubar=no,resizable=no");
 }
 
-function fncGetJuso() {
-	var userId = document.getElementById("userId").value;
-	popWin 
-		= window.open("/user/checkDuplication.jsp?userId="+userId,"popWin", "left=300,top=200,width=300,height=200,marginwidth=0,marginheight=0,scrollbars=no,scrolling=no,menubar=no,resizable=no");
-}
-
-
-
 function resetData() {
 	document.detailForm.reset();
 }
@@ -122,14 +114,16 @@ function goPopup(){
 /** API 서비스 제공항목 확대 (2017.02) **/
 function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn
 						, detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn, buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno, emdNo){
-	// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+/* 	// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
 	document.form.roadAddrPart1.value = roadAddrPart1;
 	document.form.roadAddrPart2.value = roadAddrPart2;
 	document.form.addrDetail.value = addrDetail;
-	document.form.zipNo.value = zipNo;
+	document.form.zipNo.value = zipNo; */
+	
+	document.detailForm.addr.value = zipNo+" "+roadAddrPart1+" "+roadAddrPart2+" "+addrDetail;
 }
 
-//
+// end 도로명 주소 팝업
 
 </script>
 </head>
@@ -259,11 +253,11 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	</tr>
 	
 	<tr>
-		<td width="104" class="ct_write"><a href="javascript:goPopup();">주소</a> </td>
+		<td width="104" class="ct_write">주소 </td>	
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input		type="text" name="addr" class="ct_input_g" 
-						 	style="width:370px; height:19px"  maxLength="100"/> 
+			<input		type="text" name="addr" class="ct_input_bg"
+						 	style="width:470px; height:19px"  maxLength="100; cursor:hand;" readonly /> <a href="javascript:goPopup();" style="color:blue;">주소검색</a> 
 		</td>
 	</tr>
 	

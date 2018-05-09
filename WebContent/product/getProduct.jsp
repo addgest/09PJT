@@ -67,10 +67,10 @@
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<c:if test="${empty vo.fileName}">
-				<img src = "/images/uploadFiles/../../images/empty.GIF"/>
+				<img src = "/images/uploadFiles/empty.GIF"/>
 			</c:if>
 			<c:if test="${! empty vo.fileName}">
-				<img src = "/images/uploadFiles/../../images/${vo.fileName}"/>
+				<img src = "/images/uploadFiles/${vo.fileName}"/>
 			</c:if>
 			
 		</td>

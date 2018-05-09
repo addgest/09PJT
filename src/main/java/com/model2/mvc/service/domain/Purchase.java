@@ -8,18 +8,22 @@ import com.model2.mvc.service.domain.User;
 
 public class Purchase {
 	
-	private User buyer;
-	private String divyAddr;
-	private String divyDate;
-	private String divyRequest;
-	private Date orderDate;
-	private String paymentOption;
-	private Product purchaseProd;
-	private String receiverName;
-	private String receiverPhone;
-	private String tranCode;
+	//Field (table transaction)  
 	private int tranNo;
-	
+	private Product purchaseProd;
+	private User buyer;
+	private String paymentOption;
+	private String receiverName;
+	private String receiverPhone;	
+	private String divyAddr;
+	private String divyRequest;	
+	private String tranCode;	
+	private Date orderDate;	
+	private String divyDate;
+
+	//Fileld (table not transaction)
+	private String purchaseProdName;
+
 	public Purchase(){
 	}
 	
@@ -89,7 +93,15 @@ public class Purchase {
 	public void setTranNo(int tranNo) {
 		this.tranNo = tranNo;
 	}
-	
+		
+	public String getPurchaseProdName() {
+		return purchaseProdName;
+	}
+
+	public void setPurchaseProdName(String purchaseProdName) {
+		this.purchaseProdName = purchaseProdName;
+	}
+		
 	@Override
 	public String toString() {
 		return "PurchaseVO [buyer=" + buyer + ", divyAddr=" + divyAddr
@@ -98,6 +110,6 @@ public class Purchase {
 				+ paymentOption + ", purchaseProd=" + purchaseProd
 				+ ", receiverName=" + receiverName + ", receiverPhone="
 				+ receiverPhone + ", tranCode=" + tranCode + ", tranNo="
-				+ tranNo + "]";
+				+ tranNo + " purchaseProdName="+purchaseProdName+"]";
 	}
 }
