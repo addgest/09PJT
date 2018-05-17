@@ -5,8 +5,20 @@
 <head>
 <title>상품등록</title>
 
-<link rel="stylesheet" href="/css/admin.css" type="text/css">
-
+	<link rel="stylesheet" href="/css/admin.css" type="text/css">
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript">
+		$( function(){
+	 		$('input:text').click( function(){				
+	        	$("input:text").removeClass("selected");
+	            $(this).addClass("selected");					
+			})
+			
+	 		$('input:file').click( function(){				
+            	$("input:text").removeClass("selected");            				
+			})				
+		});	
+	</script>	
 </head>
 
 <body bgcolor="#ffffff" text="#000000">
@@ -90,11 +102,14 @@
 		<td class="ct_write01">
 			<!-- 테이블 시작 -->
 			<table border="0" cellspacing="0" cellpadding="0">
+				<c:forEach var="i" begin="1" end="5">	
+				<c:set var="fileName" value="fileName${i }" />
 				<tr>
 					<td height="26">
-						${vo.fileName}
+						${vo[fileName]}						
 					</td>
 				</tr>
+				</c:forEach>
 			</table>
 		</td>
 	</tr>

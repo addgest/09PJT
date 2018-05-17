@@ -9,7 +9,20 @@
 
 <script type="text/javascript" src="../javascript/calendar.js">
 </script>
-
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript">
+		$( function(){
+			
+	 		$('input:text').click( function(){				
+	        	$("input:text").removeClass("selected");
+	            $(this).addClass("selected");					
+			})
+			
+	 		$('input:file').click( function(){				
+            	$("input:text").removeClass("selected");            				
+			})			
+		});	
+	</script>
 <script type="text/javascript">
 <!--
 function fncAddProduct(){
@@ -132,14 +145,16 @@ function fncAddProduct(){
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
-	<tr>
-		<td width="104" class="ct_write">상품이미지</td>
-		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">
-			<input	type="text" name="fileName" class="ct_input_g" 
-						style="width: 200px; height: 19px" maxLength="13" value="${product.fileName}"/>
-		</td>
-	</tr>
+	<c:forEach var="i" begin="1" end="5">	
+		<c:set var="fileName" value="fileName${i }" />
+		<tr>
+			<td width="104" class="ct_write">상품이미지${i } </td>
+			<td bgcolor="D6D6D6" width="1"></td>
+			<td class="ct_write01">
+				<input	type="file" name="${fileName }" class="ct_input_g" 
+							style="width: 200px; height: 19px" maxLength="13" value="${product[fileName]}"/>* 기존 파일명 :  ${product[fileName]}</td>
+		</tr>
+	</c:forEach> 
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>

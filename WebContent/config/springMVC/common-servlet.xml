@@ -96,5 +96,12 @@
 		<property name="defaultErrorView"	value="/common/error.jsp" />
 		
 	</bean>
+
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="maxUploadSize" value="3145728" />
+		<property name="maxInMemorySize" value="1048576" />
+	</bean>
+
 	
 </beans>

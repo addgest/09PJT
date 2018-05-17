@@ -1,6 +1,7 @@
 package com.model2.mvc.web.product;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.model2.mvc.common.Page;
 import com.model2.mvc.common.Search;
@@ -42,6 +45,8 @@ public class ProductController {
 	private ProductService productService;
 	//setter Method 구현 않음
 		
+	private FileOutputStream fos;
+	
 	public ProductController(){
 		System.out.println(this.getClass());
 	}
@@ -67,10 +72,57 @@ public class ProductController {
 	
 	@RequestMapping(value="addProduct", method=RequestMethod.POST)
 	public String addProduct( @ModelAttribute("product") Product product,
-								Model model,
-								HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-		if(FileUpload.isMultipartContent(request)) {
+								Model model,								
+								HttpServletRequest request,
+								HttpServletResponse response)
+								 throws Exception {
+				
+		System.out.println("555"); 
+		//java.util.Iterator<String> fileNames = rrequest.getFileNames();
+		System.out.println("111"); 
+//		while(fileNames.hasNext())
+//		{
+//			System.out.println("222"); 
+//			String fileName = fileNames.next();
+//
+//			MultipartFile mFile = rrequest.getFile(fileName);
+//
+//			File file = new File("C:\\workspace\\09.Model2MVCShop(2jQuery)\\WebContent\\images\\uploadFiles");
+//
+//			if(mFile.getSize()!=0) //File Null Check
+//			{
+//				if(! file.exists()) //경로상에 파일이 존재하지 않을 경우
+//				{
+//					if(file.getParentFile().mkdirs()) //경로에 해당하는 디렉토리들을 생성
+//					{
+//						try {
+//							file.createNewFile(); //이후 파일 생성
+//						} catch (IOException e) {
+//							// TODO Auto-generated catch block
+//							e.printStackTrace();
+//						}
+//					}
+//				}
+//
+//				try {
+//					mFile.transferTo(file); //임시로 저장된 multipartFile을 실제 파일로 전송
+//					//Business Logic
+//
+//					
+//				} catch (IllegalStateException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
+//		}
+		
+		productService.addProduct(product);
+		model.addAttribute("vo", product);		
+		
+/*		if(FileUpload.isMultipartContent(request)) {
 			String temDir = "C:\\workspace\\07.Model2MVCShop(2URI,pattern)\\WebContent\\images\\uploadFiles\\";
 			
 			DiskFileUpload fileUpload = new DiskFileUpload();
@@ -130,7 +182,7 @@ public class ProductController {
 				
 		}else {
 			System.out.println("인코딩 타입이 multipart/form-data가 아닙니다..");
-		}
+		}*/
 	
 		//return "redirect:/product/addProductView.jsp";
 		return  "forward:/product/addProduct.jsp";

@@ -13,7 +13,11 @@
 		<result property="prodDetail" 	column="prod_detail" 		jdbcType="VARCHAR" />
 		<result property="manuDate" 	column="manufacture_day" 	jdbcType="VARCHAR" />
 		<result property="price" 		column="price" 				jdbcType="INTEGER" />
-		<result property="fileName" 	column="image_file" 		jdbcType="VARCHAR" />
+		<result property="fileName1" 	column="image_file1" 		jdbcType="VARCHAR" />
+		<result property="fileName2" 	column="image_file2" 		jdbcType="VARCHAR" />
+		<result property="fileName3" 	column="image_file3" 		jdbcType="VARCHAR" />
+		<result property="fileName4" 	column="image_file4" 		jdbcType="VARCHAR" />
+		<result property="fileName5" 	column="image_file5" 		jdbcType="VARCHAR" />
 		<result property="tranNo" 		column="tran_no" 			jdbcType="INTEGER" />
 		<result property="proTranCode" 	column="tran_status_code" 	jdbcType="VARCHAR" />		
 		<result property="regDate" 		column="reg_date" 			jdbcType="DATE" />
@@ -23,8 +27,8 @@
 	<insert 	id="addProduct"		parameterType="product" >
 	
 		INSERT 
-		INTO product (prod_no, prod_name, prod_detail, manufacture_day, price, image_file, reg_date) 
-		VALUES (SEQ_PRODUCT_PROD_NO.NEXTVAL,#{prodName},#{prodDetail},#{manuDate},#{price},#{fileName},sysdate)
+		INTO product (prod_no, prod_name, prod_detail, manufacture_day, price, image_file1, image_file2, image_file3, image_file4, image_file5, reg_date) 
+		VALUES (SEQ_PRODUCT_PROD_NO.NEXTVAL,#{prodName},#{prodDetail},#{manuDate},#{price},#{fileName1},#{fileName2},#{fileName3},#{fileName4},#{fileName5},sysdate)
 
 	 </insert>
 	 
@@ -36,10 +40,20 @@
 			p.prod_detail as prod_detail,
 			p.manufacture_day as manufacture_day,
 			p.price as price,
-			p.image_file as image_file,
+			p.image_file1 as image_file1,
+			p.image_file2 as image_file2,
+			p.image_file3 as image_file3,
+			p.image_file4 as image_file4,
+			p.image_file5 as image_file5,
 			p.reg_date as reg_date,
-			(SELECT t.tran_no FROM transaction t WHERE t.prod_no=p.prod_no and t.tran_status_code !='999') as tran_no, 
-			(SELECT t.tran_status_code FROM transaction t WHERE t.prod_no=p.prod_no and t.tran_status_code !='999') as tran_status_code	
+			(SELECT t.tran_no 
+				FROM transaction t 
+				WHERE t.prod_no=p.prod_no 
+				and t.tran_status_code !='999') as tran_no, 
+			(SELECT t.tran_status_code 
+				FROM transaction t 
+				WHERE t.prod_no=p.prod_no 
+				and t.tran_status_code !='999') as tran_status_code	
 		FROM product p
 		WHERE p.prod_no = #{value}
 	 </select>
@@ -52,7 +66,11 @@
 	 		PROD_DETAIL=#{prodDetail},
 	 		MANUFACTURE_DAY=#{manuDate},
 	 		PRICE=#{price},
-	 		IMAGE_FILE=#{fileName}
+	 		IMAGE_FILE1=#{fileName1},
+	 		IMAGE_FILE1=#{fileName2},
+	 		IMAGE_FILE1=#{fileName3},
+	 		IMAGE_FILE1=#{fileName4},
+	 		IMAGE_FILE1=#{fileName5}
 	 	</set>  
 	 	WHERE PROD_NO=#{prodNo}
 	 </update>

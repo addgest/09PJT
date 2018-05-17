@@ -68,6 +68,7 @@ a:clicked   {font-size: 9pt; color: #000000; text-decoration: none; font-family:
 
 
 /*ÀÔ·ÂÆû*/
+
 .ct_input      {font-size:9pt; border:1x solid #468720; color:#777777; background-color:#ffffff; font-family:"µ¸¿ò", "±¼¸²"; padding-top:2px}
 .ct_input_g    {font-size:9pt; border:1x solid #ADAEAD; color:#777777; background-color:#ffffff; font-family:"µ¸¿ò", "±¼¸²"; padding-top:2px}
 .ct_input_bg    {font-size:9pt; border:1x solid #ADAEAD; color:#777777; background-color:#dddddd; font-family:"µ¸¿ò", "±¼¸²"; padding-top:2px}
@@ -76,6 +77,9 @@ select {border:1x solid #ADAEAD; color:#777777; background-color:#ffffff; font-f
 
 .ct_write          {font-size: 9pt; color: #181818; font-family:"µ¸¿ò", "±¼¸²"; padding:3px 0px 0px 10px; background-color:#F5F5F5; height:26px;}
 .ct_write01        {font-size: 9pt; color: #565656; font-family:"µ¸¿ò", "±¼¸²"; padding:3px 0px 3px 4px;}
+
+/*Ãß°¡*/
+ .selected {border:2px #5AFFFF solid}
 
 
 /* °Ô½ÃÆÇ */ 

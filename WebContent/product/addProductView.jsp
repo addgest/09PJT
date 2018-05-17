@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=euc-kr" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	
 <html>
 <head>
@@ -6,17 +7,36 @@
 
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
 
-<script type="text/javascript" src="../javascript/calendar.js">
-</script>
+	<script type="text/javascript" src="../javascript/calendar.js">
+	</script>
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript">
+		$( function(){
+	 		$('input:text').click( function(){				
+            	$("input:text").removeClass("selected");
+                $(this).addClass("selected");					
+			})
+			
+	 		$('input:file').click( function(){				
+            	$("input:text").removeClass("selected");            				
+			})			
+		});	
+	</script>	
 
 <script type="text/javascript">
-<!--
+<!-- -->
 function fncAddProduct(){
 	//Form 유효성 검증
- 	var name = document.detailForm.prodName.value;
-	var detail = document.detailForm.prodDetail.value;
-	var manuDate = document.detailForm.manuDate.value;
-	var price = document.detailForm.price.value;
+ 	//var name = document.detailForm.prodName.value;
+	//var detail = document.detailForm.prodDetail.value;
+	//var manuDate = document.detailForm.manuDate.value;
+	//var price = document.detailForm.price.value;
+	
+	var name=$("input[name='prodName']").val();
+	var detail=$("input[name='prodDetail']").val();
+	var manuDate=$("input[name='manuDate']").val();
+	var price=$("input[name='price']").val();
+	
 
 	if(name == null || name.length<1){
 		alert("상품명은 반드시 입력하여야 합니다.");
@@ -35,20 +55,20 @@ function fncAddProduct(){
 		return;
 	}
 
-	document.detailForm.action='/product/addProduct';
-	document.detailForm.submit();
+	$("form").attr("method", "POST").attr("action", "/product/addProduct").submit();
+	
 }
 
 function resetData(){
 	document.detailForm.reset();
 }
--->
+
 </script>
 </head>
 
 <body bgcolor="#ffffff" text="#000000">
 
-<form name="detailForm" method="post" enctype="multipart/form-data">
+<form name="detailForm" enctype="multipart/form-data">
 
 <table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
 	<tr>
@@ -133,14 +153,16 @@ function resetData(){
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
+	<c:forEach var="i" begin="1" end="5" step="1"> 
 	<tr>
-		<td width="104" class="ct_write">상품이미지</td>
+		<td width="104" class="ct_write">상품이미지${i}</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input type="file" name="fileName" class="ct_input_g" 
+			<input type="file" name="fileName${i}" class="ct_input_g" 
 							style="width: 200px; height: 19px" maxLength="13"/>
 		</td>
 	</tr>
+	</c:forEach>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
